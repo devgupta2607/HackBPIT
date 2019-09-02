@@ -9,6 +9,7 @@ let one = false;
 let cycle=0;
 var prev=0;
 var saved = false;
+var speak = false;
 
 function setup() {
   createCanvas(620, 480);
@@ -108,6 +109,12 @@ function drawKeypoints()  {
         heat.add([157,60,5]);
         heat.add([135,60,5]);
         heat.draw(0.05);
+        if(speak==false){
+          var msg = new SpeechSynthesisUtterance('Please bend your back a bit more ');
+          msg.rate = 0.9;
+          window.speechSynthesis.speak(msg);
+          speak=true;
+        }
       }
 
       if(cycle==5){
@@ -133,7 +140,7 @@ function drawKeypoints()  {
     }
     if(cycle==5 && saved==false){
       console.log("over");
-      var msg = new SpeechSynthesisUtterance('You did a great job . You burnt 5.3 calories . Your arms could have gone bit more higher .');
+      var msg = new SpeechSynthesisUtterance('Well Done . Your burnt 6 calories');
       msg.rate = 0.9;
       window.speechSynthesis.speak(msg);
       saved=true;
